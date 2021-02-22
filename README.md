@@ -23,7 +23,7 @@
 * [Github](https://github.com/eelkjaer)
 * [LinkedIn](https://linkedin.com/in/emil-elkjær)
 
-👤 **Sigurd Arik Twena Nielsen**
+👤 **Sigurd Arik Gaarde Nielsen**
 
 * [Github](https://github.com/ariktwena)
 
