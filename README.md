@@ -38,6 +38,10 @@
 
 Give a ⭐️ if this project helped you!
 
+## Contributing
+
+Feel free to fork this project and make your changes.
+
 ## 📝 License
 
 This project is [MIT](LICENSE) licensed.
