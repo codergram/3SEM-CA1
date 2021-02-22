@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Codergram CA1</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
-    <body>
-        <h1>Change or remove this page</h1>
+    <body onload="getStaticMembers()">
+        <h1>Codergram</h1>
+
+        <h3>Members (loaded from a REST API)</h3>
+
+        <table class="table" id="membertable">
+            <thead>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Favorite TV series</th>
+            </thead>
+            <tbody id="members">
+
+            </tbody>
+        </table>
+        <button id="reload" onclick="getStaticMembers()">Reload names</button>
+
+    <h3>Links</h3>
+    <ul>
+        <li>
+            <a href="groupcontract.html">Who did what and our group contract</a>
+        </li>
+        <li>
+            <a href="jokes.html">Our cool jokes page</a>
+        </li>
+        <li>
+            <a href="https://github.com/codergram/3SEM-CA1">Our Github repo</a>
+        </li>
+        <li>
+            <a href="cars.html">Our "Cars for sale" page</a>
+        </li>
+    </ul>
+        <script src="group.js"></script>
     </body>
 </html>
