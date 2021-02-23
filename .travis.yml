@@ -27,7 +27,7 @@ before_script:
 - echo "Installing MySQL 8..."
 - sudo -E apt-get -y install mysql-server
 
-- sudo mysql -u root -e "CREATE User 'coder_dev'@'localhost' IDENTIFIED BY 'badpassword123'; GRANT ALL PRIVILEGES ON *.* TO 'coder_dev'@'localhost' WITH GRANT OPTION;"
-- sudo mysql -u coder_dev -pbadpassword123 -e "CREATE DATABASE ca1_test;"
+- sudo mysql -u root -e "CREATE User 'dev'@'localhost' IDENTIFIED BY 'ax2'; GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost' WITH GRANT OPTION;"
+- sudo mysql -u dev -pax2 -e "CREATE DATABASE ca1_test;"
 - mysql --version
 - echo "before_script Complete"

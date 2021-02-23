@@ -2,14 +2,8 @@ const server = 'https://codergram.me/ca1/api/';
 const endpoint = 'api/groupmembers/';
 const URL = server + endpoint;
 
-function getStaticMembers(event){
-  var member = ["Emil", "cph-en93", ["Keeping up with the kardasians", "Matador"]]
-  document.getElementById("members").innerHTML = `<tr><td>${member[0]}</td><td>${member[1]}</td><td>${member[2]}</td></tr>`;
-}
-
-
-
 function getAllMembers(event){
+  console.log("Get all members called")
   fetch(URL)
   .then((resp) => resp.json())
   .then(function(data) {
@@ -19,5 +13,14 @@ function getAllMembers(event){
   })
   .catch(function(error) {
     console.log(error);
+    document.getElementById("message").innerHTML = `<p style="color: red;">Error: ${error}</p>`
   });
 }
+
+
+// Document events
+window.addEventListener('load', function() {
+  getAllMembers()
+})
+
+document.getElementById("reload").addEventListener('click', getAllMembers);
