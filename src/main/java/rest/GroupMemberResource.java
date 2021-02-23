@@ -24,6 +24,7 @@ public class GroupMemberResource {
     private static final GroupMemberFacade FACADE =  GroupMemberFacade.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    //FIXME: Should be removed soon
     @Path("isalive")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -39,6 +40,7 @@ public class GroupMemberResource {
         return GSON.toJson(members);
     }
 
+    //TODO: Make nice
     @Path("name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})

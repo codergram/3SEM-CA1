@@ -1,0 +1,5 @@
+todo:
+  autoAssign: false
+  keyword: ['TODO:', 'FIXME:', 'TODO', 'FIXME']
+  caseSensitive: false
+  label: true, ['todo', 'bug']
