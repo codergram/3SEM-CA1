@@ -57,7 +57,7 @@ public class GroupMemberFacade {
     
     public List<GroupMemberDTO> getAll(){
         EntityManager em = emf.createEntityManager();
-        TypedQuery<GroupMember> query = em.createQuery("SELECT member FROM GroupMember member", GroupMember.class);
+        TypedQuery<GroupMember> query = em.createQuery("SELECT Members FROM GroupMember Members", GroupMember.class);
         List<GroupMember> rms = query.getResultList();
         return GroupMemberDTO.getDtos(rms);
     }
