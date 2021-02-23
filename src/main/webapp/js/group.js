@@ -8,9 +8,11 @@ function getAllMembers(event){
   .then((resp) => resp.json())
   .then(function(data) {
     console.log(data)
-    return data.results.map(function(member) {
-      document.getElementById("members").innerHTML = `<tr><td>${member.name}</td><td>${member.email}</td><td>${member.favseries}</td></tr>`;
-    })
+    let rows = ''
+    {data.map(member =>
+        rows += `<tr><td>${member.name}</td><td>${member.email.slice(0,member.email.indexOf('@'))}</td><td>${member.favseries.join(', ')}</td></tr>`
+    )}
+    document.getElementById('members').innerHTML = rows
   })
   .catch(function(error) {
     console.log(error);
