@@ -13,7 +13,7 @@ function findCarById() {
     let id = document.getElementById("car_id").value;
     //console.log(id);
 
-    fetch('https://codergram.me/ca1/api/cars/id/' + id)
+    fetch('api/cars/id/' + id)
             .then(res => res.json())
             .then(data => {
                 //console.log("data", data);
@@ -34,7 +34,7 @@ function findCarById() {
 document.getElementById("findCarPrice").onclick = () => {
     let price = document.getElementById("car_price").value;
     //console.log(price);
-    fetch('https://codergram.me/ca1/api/cars/all')
+    fetch('api/cars/all')
             .then(res => res.json())
             .then(data => {
                 let filteredData = data.filter(currentElement => currentElement.price < price);
@@ -61,7 +61,7 @@ document.getElementById("findCarPrice").onclick = () => {
 document.getElementById("findCarBrand").onclick = () => {
     let brand = document.getElementById("car_brand").value;
     console.log(brand);
-    fetch('https://codergram.me/ca1/api/cars/brand/' + brand)
+    fetch('api/cars/brand/' + brand)
             .then(res => res.json())
             .then(data => {
                 //console.log("data", data);
@@ -85,7 +85,7 @@ document.getElementById("findCarBrand").onclick = () => {
 
 
 function findAllCars() {
-    fetch('https://codergram.me/ca1/api/cars/all')
+    fetch('api/cars/all')
             .then(res => res.json())
             .then(data => {
                 //console.log("data", data);
