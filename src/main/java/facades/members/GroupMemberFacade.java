@@ -50,9 +50,9 @@ public class GroupMemberFacade {
         }
         return new GroupMemberDTO(member);
     }
-    public GroupMemberDTO getById(int id){
+    public GroupMemberDTO getByName(String name){
         EntityManager em = emf.createEntityManager();
-        return new GroupMemberDTO(em.find(GroupMember.class, id));
+        return new GroupMemberDTO(em.find(GroupMember.class, name));
     }
     
     public List<GroupMemberDTO> getAll(){
