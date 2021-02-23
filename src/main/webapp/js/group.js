@@ -1,10 +1,10 @@
-const server = 'https://codergram.me/ca1/api/';
-const endpoint = 'groupmembers/all';
-const URL = server + endpoint;
+const URL = 'https://codergram.me/ca1/api/';
 
 function getAllMembers(event){
+  const endpoint = 'groupmembers/all';
+
   console.log("Get all members called")
-  fetch(URL)
+  fetch(URL+endpoint)
   .then((resp) => resp.json())
   .then(function(data) {
     console.log(data)
@@ -20,10 +20,37 @@ function getAllMembers(event){
   });
 }
 
+function getMemberWork(name){
+  const endpoint = `groupmembers/madeby/${name}`;
+  console.log("Getting data for " + name)
+  fetch(URL+endpoint)
+  .then((resp) => resp.json())
+  .then(function(data) {
+    {data.map(member =>
+        document.getElementById(name).innerHTML = member.msg
+    )}
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+}
 
-// Document events
-window.addEventListener('load', function() {
-  getAllMembers()
-})
 
-document.getElementById("reload").addEventListener('click', getAllMembers);
+// Document events depending on which page
+if(document.getElementById("membertable")){
+  console.log("On index page. Adding eventlisteners")
+  window.addEventListener('load', function() { getAllMembers() })
+  document.getElementById("reload").addEventListener('click', getAllMembers);
+} else if(document.getElementById("grouppage")) {
+  console.log("On group page. adding eventlisterns")
+  window.addEventListener('load', function() {
+    getMemberWork("all")
+    getMemberWork("emil")
+    getMemberWork("arik")
+    getMemberWork("jacob")
+
+  })
+} else {
+  console.log("Not on index.")
+  alert("Element does not exist");
+}

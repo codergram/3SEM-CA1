@@ -46,4 +46,44 @@ public class GroupMemberResource {
         GroupMemberDTO member = FACADE.getByName(name);
         return GSON.toJson(member);
     }
+
+
+
+    @Path("madeby/{name}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String madeby(@PathParam("name") String name) {
+        switch (name){
+            case "emil":
+                return emilWork();
+            case "arik":
+                return arikWork();
+            case "jacbo":
+                return jacobWork();
+            case "all":
+                return allWork();
+            default:
+                return allWork();
+        }
+    }
+
+    private String createMsg(String msg){
+        return String.format("{\"msg\":\"%s\"}", msg);
+    }
+
+    private String emilWork(){
+        return createMsg("DevOps");
+    }
+
+    private String arikWork(){
+        return createMsg("Javascript");
+    }
+
+    private String jacobWork(){
+        return createMsg("Pancakes");
+    }
+
+    private String allWork(){
+        return createMsg("A awesome REST API and JS front");
+    }
 }
