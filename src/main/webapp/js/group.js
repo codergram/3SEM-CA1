@@ -26,9 +26,7 @@ function getMemberWork(name){
   fetch(URL+endpoint)
   .then((resp) => resp.json())
   .then(function(data) {
-    {data.map(member =>
-        document.getElementById(name).innerHTML = member.msg
-    )}
+    document.getElementById(name).innerHTML = data['msg']
   })
   .catch(function(error) {
     console.log(error);

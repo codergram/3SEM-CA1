@@ -58,7 +58,7 @@ public class GroupMemberResource {
                 return emilWork();
             case "arik":
                 return arikWork();
-            case "jacbo":
+            case "jacob":
                 return jacobWork();
             case "all":
                 return allWork();
@@ -72,6 +72,7 @@ public class GroupMemberResource {
     }
 
     private String emilWork(){
+        //TODO: Write content
         return createMsg("DevOps");
     }
 
