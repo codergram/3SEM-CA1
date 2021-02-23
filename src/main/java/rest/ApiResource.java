@@ -34,7 +34,7 @@ public class ApiResource {
     public boolean populate(@PathParam("key") String key) {
         if (key.equalsIgnoreCase("guderstor")) {
             return GroupPopulator.populate();
-        } else if (key.equalsIgnoreCase("hakuna-matata")){
+        } else if (key.equalsIgnoreCase("hakunamatata")){
             return CarPopulator.populate();
         }
         return false;
