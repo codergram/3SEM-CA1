@@ -24,7 +24,7 @@ public class GroupMemberResource {
     private static final GroupMemberFacade FACADE =  GroupMemberFacade.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    //FIXME: Should be removed soon
+    // FIXME: Should be removed soon
     @Path("isalive")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -40,7 +40,6 @@ public class GroupMemberResource {
         return GSON.toJson(members);
     }
 
-    //TODO: Make nice
     @Path("name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -73,15 +72,17 @@ public class GroupMemberResource {
         return String.format("{\"msg\":\"%s\"}", msg);
     }
 
+    // TODO: Write content @Emil
     private String emilWork(){
-        //TODO: Write content
         return createMsg("DevOps");
     }
 
+    // TODO: Write content @Arik
     private String arikWork(){
         return createMsg("Javascript");
     }
 
+    // TODO: Write content @Jacob
     private String jacobWork(){
         return createMsg("Pancakes");
     }
