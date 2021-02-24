@@ -75,7 +75,7 @@ class GroupMemberFacadeTest {
 
     @Test
     void getById(){
-        int expected = 1;
+        int expected = r1.getId();
         assertEquals(expected, facade.getById(expected).getId(), "Expects " + expected + " to be in the database");
     }
 
