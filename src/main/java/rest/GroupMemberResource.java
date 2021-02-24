@@ -94,7 +94,7 @@ public class GroupMemberResource {
  
     private String jacobWork(){
         List<String> worklist = new ArrayList<>();
-        worklist.add("Our funny names page added");
+        worklist.add("Our funny names page");
         worklist.add("Html and Javascript");
 
         return GSON.toJson(

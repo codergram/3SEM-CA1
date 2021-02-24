@@ -9,11 +9,13 @@ import java.util.List;
  */
 public class JokeDTO {
   private int id;
-  private String thejoke;
+  private String question;
+  private String answer;
   private String type;
 
-  public JokeDTO(String thejoke, String type) {
-    this.thejoke = thejoke;
+  public JokeDTO(String question, String answer, String type) {
+    this.question = question;
+    this.answer = answer;
     this.type = type;
   }
 
@@ -26,16 +28,25 @@ public class JokeDTO {
 
   public JokeDTO(Joke rm) {
     this.id = rm.getId();
-    this.thejoke = rm.getThejoke();
+    this.question = rm.getQuestion();
+    this.answer = rm.getAnswer();
     this.type = rm.getType();
   }
 
-  public String getThejoke() {
-    return thejoke;
+  public String getQuestion() {
+    return question;
   }
 
-  public void setThejoke(String thejoke) {
-    this.thejoke = thejoke;
+  public void setQuestion(String question) {
+    this.question = question;
+  }
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(String answer) {
+    this.answer = answer;
   }
 
   public String getType() {
@@ -50,7 +61,8 @@ public class JokeDTO {
   public String toString() {
     final StringBuilder sb = new StringBuilder("JokeDTO{");
     sb.append("id=").append(id);
-    sb.append(", thejoke='").append(thejoke).append('\'');
+    sb.append(", question='").append(question).append('\'');
+    sb.append(", answer='").append(answer).append('\'');
     sb.append(", type='").append(type).append('\'');
     sb.append('}');
     return sb.toString();

@@ -22,11 +22,13 @@ public class Joke implements Serializable {
   public Joke() {
   }
 
-  private String thejoke;
+  private String question;
+  private String answer;
   private String type;
 
-  public Joke(String thejoke, String type) {
-    this.thejoke = thejoke;
+  public Joke(String question, String answer, String type) {
+    this.question = question;
+    this.answer = answer;
     this.type = type;
   }
 
@@ -38,12 +40,20 @@ public class Joke implements Serializable {
     this.id = id;
   }
 
-  public String getThejoke() {
-    return thejoke;
+  public String getQuestion() {
+    return question;
   }
 
-  public void setThejoke(String thejoke) {
-    this.thejoke = thejoke;
+  public void setQuestion(String question) {
+    this.question = question;
+  }
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(String answer) {
+    this.answer = answer;
   }
 
   public String getType() {

@@ -38,7 +38,7 @@ public class JokeFacade {
   }
 
   public JokeDTO create(JokeDTO jokeDTO){
-    Joke joke = new Joke(jokeDTO.getThejoke(), jokeDTO.getType());
+    Joke joke = new Joke(jokeDTO.getQuestion(), jokeDTO.getAnswer(), jokeDTO.getType());
     EntityManager em = emf.createEntityManager();
     try {
       em.getTransaction().begin();
@@ -71,7 +71,7 @@ public class JokeFacade {
   public static void main(String[] args) {
     emf = EMF_Creator.createEntityManagerFactory();
     JokeFacade fe = getJokeFacade(emf);
-    fe.getAllJokes().forEach(dto->System.out.println(dto));
+    fe.getAllJokes().forEach(System.out::println);
   }
 
 }
