@@ -35,6 +35,26 @@ function getMemberWork(name){
   });
 }
 
+function getWork(name){
+  const endpoint = `groupmembers/madeby/${name}`;
+
+  console.log("Getting data for " + name)
+  fetch(URL+endpoint)
+  .then((resp) => resp.json())
+  .then(function(data) {
+    console.log(data)
+    let rows = ''
+    {data['workdone'].map(member =>
+        rows += `<li>${member}</li>`
+    )}
+    document.getElementById(name).innerHTML = '<ul>' + rows + '</ul>'
+  })
+  .catch(function(error) {
+    console.log(error);
+    document.getElementById(name).innerHTML = `<p style="color: #ff0000;">Error: ${error}</p>`
+  });
+}
+
 
 // Document events depending on which page
 if(document.getElementById("membertable")){

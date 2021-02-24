@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.members.GroupMemberDTO;
 import facades.members.GroupMemberFacade;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
@@ -53,47 +54,76 @@ public class GroupMemberResource {
                 return arikWork();
             case "jacob":
                 return jacobWork();
-            case "all":
-                return allWork();
             default:
                 return allWork();
         }
     }
 
-    private String createMsg(String msg){
-        return String.format("{\"msg\":\"%s\"}", msg);
-    }
-
     private String emilWork(){
-        String str = "<ul>\n"
-            + "      <li>Droplet setup</li>\n"
-            + "      <li>Github repository</li>\n"
-            + "      <li>Group members (REST, JPA, JS, HTML)</li>\n"
-            + "      <li>Group page (REST, JS, HTML)</li>\n"
-            + "      <li>Jokes page (REST, JPA, JS, HTML)</li>\n"
-            + "  </ul>";
+        List<String> worklist = new ArrayList<>();
+        worklist.add("Droplet setup");
+        worklist.add("Github repository");
+        worklist.add("Group members (REST, JPA, JS, HTML)");
+        worklist.add("Group page (REST, JS, HTML)");
+        worklist.add("Jokes page (REST, JPA, JS, HTML)");
 
-        return createMsg(str);
+        return GSON.toJson(
+            new WorkMade("Emil", worklist)
+        );
     }
 
     private String arikWork(){
-    String str =
-        "<ul>\n"
-            + "      <li>Car Entity and JPA</li>\n"
-            + "      <li>Car REST/API</li>\n"
-            + "      <li>Car test UNI/REST</li>\n"
-            + "      <li>Car for sale JavaScript html</li>\n"
-            + "  </ul>";
+        List<String> worklist = new ArrayList<>();
+        worklist.add("Car Entity and JPA");
+        worklist.add("Car REST/API");
+        worklist.add("Car test UNI/REST");
+        worklist.add("Car for sale JavaScript html");
 
-        return createMsg(str);
+        return GSON.toJson(
+            new WorkMade("Arik", worklist)
+        );
     }
 
     // TODO: Write content @Jacob
+    // @body Få skrevet ind hvilke ting du har lavet.
+    // Husk at fjerne disse to kommentarer inden du pusher.
     private String jacobWork(){
-        return createMsg("Pancakes");
+        List<String> worklist = new ArrayList<>();
+        worklist.add("xxxxxx");
+
+        return GSON.toJson(
+            new WorkMade("Jacob", worklist)
+        );
     }
 
     private String allWork(){
-        return createMsg("A awesome REST API and JS front");
+        List<String> worklist = new ArrayList<>();
+        worklist.add("Group contract");
+
+        return GSON.toJson(
+            new WorkMade("All", worklist)
+        );
+    }
+}
+
+class WorkMade{
+    String groupMember;
+    List<String> workdone;
+
+    public WorkMade(String groupMember, List<String> workdone) {
+        this.groupMember = groupMember;
+        this.workdone = workdone;
+    }
+
+    public void addToList(String workdone) {
+        this.workdone.add(workdone);
+    }
+
+    public String getGroupMember() {
+        return groupMember;
+    }
+
+    public List<String> getWorkdone() {
+        return workdone;
     }
 }

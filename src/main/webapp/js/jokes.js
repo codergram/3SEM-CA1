@@ -14,7 +14,7 @@ function getAllJokes(event){
     {data.map(joke =>
         rows += `<tr><td>${joke.thejoke}</td><td>${joke.type}</td></tr>`
     )}
-    document.getElementById('tableContent').innerHTML = rows
+    document.getElementById('tableContent').innerHTML = rows.replace(/\n/g,"<br>")
   })
   .catch(function(error) {
     console.log(error);
@@ -28,7 +28,7 @@ function getJokeById(id){
   fetch(URL+endpoint)
   .then((resp) => resp.json())
   .then(function(data) {
-    document.getElementById("message").innerHTML = `<p style="color: green;">${data['thejoke']}</p>`
+    document.getElementById("message").innerHTML = `<p style="color: green;">${data['thejoke'].replace(/\\n/g,"<br>")}</p>`
   })
   .catch(function(error) {
     console.log(error);
@@ -41,7 +41,8 @@ function getRandomJoke(){
   fetch(URL+endpoint)
   .then((resp) => resp.json())
   .then(function(data) {
-    document.getElementById("message").innerHTML = `<p style="color: green;">${data['thejoke']}</p>`
+    document.getElementById("message").innerHTML = `<p style="color: green;">${data['thejoke'].replace(
+        /\\n/g, "<br>")}</p>`
   })
   .catch(function(error) {
     console.log(error);
