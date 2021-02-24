@@ -1,0 +1,231 @@
+
+<html>
+    
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Dom Manipulation Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .content {
+                margin: auto;
+            }
+        </style>
+    
+    </head>
+    <body>
+  
+        <div style="text-align: center" class="col-sm-8">
+           
+            <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+ 
+                </div>
+                <div class="col-sm-8">
+                    <br>
+                    <h1 style="text-align: center">Dom Manipulation Page - Codergram</h1>
+                    <br>
+                    <p style="text-align: center">Add girls and boys to the list's</p>
+                    <br><br>
+ 
+                   <div>
+            <form onsubmit="mySubmitFunctionboy(event)" id="myForm" action="#">
+                Add Boy: <input type="text" name="fname" value="">
+                <input value="Submit" type="submit">
+            </form>
+                       
+            <form onsubmit="mySubmitFunctiongirl(event)" id="myForm" action="#">
+                Add Girl: <input type="text" name="fname" value="">
+                <input value="Submit" type="submit">
+            </form>
+                       
+            <button onclick="removeFirstboy(event)">Remove first boy</button>
+            <button onclick="removeLastboy(event)">Remove last boy</button>
+            
+            <button onclick="removeFirstgirl(event)">Remove first girl</button>
+            <button onclick="removeLastgirl(event)">Remoe last girl</button>
+ 
+              <button onclick="allreversed(event)">Reverse All</button>
+              <button onclick="allsorted(event)">Sort All</button>
+              <div style="text-align:center">
+              <br>
+              <table class="table table-hover">
+                  <tr>
+                      <th>Boys</th>
+                      <th>Girls</th>
+                      <th>All</th>
+                  </tr>
+                  <tr>
+                      <td id="boys-table"></td>
+                      <td id="girls-table"></td>
+                      <td id="all-table"></td>
+                  </tr>
+              </table>
+              
+             
+       </div>
+ 
+                    <script>
+                         console.log("HTML boys array");
+            let boys = ["Peter", "lars", "Ole"];
+            var html = boys.join('</li><li>');
+            console.log(html);
+            var htmlArray = ['<ul><li>', html, '</li><ul>'];
+            console.log(htmlArray);
+            htmlArray = htmlArray.join('');
+            console.log(htmlArray);
+ 
+            document.getElementById('boys-table').innerHTML = htmlArray;
+            //document.getElementById('li-table').innerHTML += htmlArray;
+            
+          
+ 
+            var mySubmitFunctionboy = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                console.log(event.target[0].value);
+                let name = event.target[0].value;
+                boys = [...boys, name];
+                let customArray = boys;
+                customArray = customArray.join('</li><li>');
+                customArray = ['<ul><li>', customArray, '</li><ul>'];
+                customArray = customArray.join('');
+                document.getElementById('boys-table').innerHTML = customArray;
+            };
+ 
+            var removeFirstboy = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                let customArray = boys;
+                customArray.shift();
+                if (customArray.length > 0) {
+                    customArray = customArray.join('</li><li>');
+                    customArray = ['<ul><li>', customArray, '</li><ul>'];
+                }
+                customArray = customArray.join('');
+                document.getElementById('boys-table').innerHTML = customArray;
+            };
+ 
+            var removeLastboy = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                let customArray = boys;
+                customArray.pop();
+                if (customArray.length > 0) {
+                    customArray = customArray.join('</li><li>');
+                    customArray = ['<ul><li>', customArray, '</li><ul>'];
+                }
+                customArray = customArray.join('');
+                document.getElementById('boys-table').innerHTML = customArray;
+            };
+ 
+ 
+ 
+            console.log("HTML boys array");
+            let girls = ["Janne", "hanne", "Sanne"];
+            var html = girls.join('</li><li>');
+            console.log(html);
+            var htmlArray = ['<ul><li>', html, '</li><ul>'];
+            console.log(htmlArray);
+            htmlArray = htmlArray.join('');
+            console.log(htmlArray);
+ 
+            document.getElementById('girls-table').innerHTML = htmlArray;
+ 
+            var mySubmitFunctiongirl = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                console.log(event.target[0].value);
+                let name = event.target[0].value;
+                girls = [...girls, name];
+                let customArray = girls;
+                customArray = customArray.join('</li><li>');
+                customArray = ['<ul><li>', customArray, '</li><ul>'];
+                customArray = customArray.join('');
+                document.getElementById('girls-table').innerHTML = customArray;
+            };
+ 
+            var removeFirstgirl = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                let customArray = girls;
+                customArray.shift();
+                if (customArray.length > 0) {
+                    customArray = customArray.join('</li><li>');
+                    customArray = ['<ul><li>', customArray, '</li><ul>'];
+                }
+                customArray = customArray.join('');
+                document.getElementById('girls-table').innerHTML = customArray;
+            };
+ 
+            var removeLastgirl = function (event) {
+                event.preventDefault();
+                console.log(event);
+                console.log(event.target);
+                let customArray = girls;
+                customArray.pop();
+                if (customArray.length > 0) {
+                    customArray = customArray.join('</li><li>');
+                    customArray = ['<ul><li>', customArray, '</li><ul>'];
+                }
+                customArray = customArray.join('');
+                document.getElementById('girls-table').innerHTML = customArray;
+            };
+      
+                    
+             var allsorted = function (event) {
+                 all.sort();
+                
+                 document.getElementById('all-table').innerHTML = all;
+            };
+            
+            var allreversed = function (event) {
+                 
+                 let allre = all.reverse();
+            var html = allre.join('</li><li>');
+            console.log(html);
+            var htmlArray = ['<ul><li>', html, '</li><ul>'];
+            console.log(htmlArray);
+            htmlArray = htmlArray.join('');
+            console.log(htmlArray);
+ 
+            document.getElementById('all-table').innerHTML = htmlArray;
+                 
+                 document.getElementById('all-table').innerHTML = all;
+            };
+            
+            
+            console.log("HTML all array");
+            let all = boys.concat(girls);
+            var html = all.join('</li><li>');
+            console.log(html);
+            var htmlArray = ['<ul><li>', html, '</li><ul>'];
+            console.log(htmlArray);
+            htmlArray = htmlArray.join('');
+            console.log(htmlArray);
+ 
+            document.getElementById('all-table').innerHTML = htmlArray;
+            
+            
+            
+            
+                    </script>
+ 
+                </div>
+                <div class="col-sm-2">
+ 
+                </div>
+            </div>
+        </div>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
