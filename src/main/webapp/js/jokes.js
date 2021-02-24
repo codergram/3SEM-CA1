@@ -22,7 +22,7 @@ function getAllJokes(event) {
     })
     .catch(function (error) {
       console.log(error);
-      document.getElementById("message").innerHTML = `<div className="alert alert-danger" role="alert">${data['thejoke'].replace(/\\n/g, "<br>")}</div>`
+      document.getElementById("message").innerHTML = `<div className="alert alert-danger" role="alert">${error}</div>`
     });
 }
 
@@ -32,7 +32,9 @@ function getJokeById(id) {
   fetch(URL + endpoint)
     .then((resp) => resp.json())
     .then(function (data) {
-      document.getElementById("message").innerHTML = `<div className="alert alert-success" role="alert">${data['thejoke'].replace(/\\n/g, "<br>")}</div>`
+      document.getElementById("message").innerHTML = `
+<div className="alert alert-primary" role="alert">${data['question']}</div>
+<div className="alert alert-success" role="alert">${data['answer']}</div>`
     })
     .catch(function (error) {
       console.log(error);
@@ -45,7 +47,9 @@ function getRandomJoke() {
   fetch(URL + endpoint)
     .then((resp) => resp.json())
     .then(function (data) {
-      document.getElementById("message").innerHTML = `<div className="alert alert-warning" role="alert">${data['thejoke'].replace(/\\n/g, "<br>")}</div>`
+      document.getElementById("message").innerHTML = `
+<div className="alert alert-primary" role="alert">${data['question']}</div>
+<div className="alert alert-success" role="alert">${data['answer']}</div>`
     })
     .catch(function (error) {
       console.log(error);
