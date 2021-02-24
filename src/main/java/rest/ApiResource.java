@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import facades.cars.CarPopulator;
 import facades.members.GroupPopulator;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
@@ -30,10 +31,12 @@ public class ApiResource {
     @Path("populatedata/{key}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean populate(@PathParam("key") String key){
+    public boolean populate(@PathParam("key") String key) {
         if (key.equalsIgnoreCase("guderstor")) {
-      return GroupPopulator.populate();
+            return GroupPopulator.populate();
+        } else if (key.equalsIgnoreCase("hakunamatata")){
+            return CarPopulator.populate();
         }
-    return false;
+        return false;
     }
 }
