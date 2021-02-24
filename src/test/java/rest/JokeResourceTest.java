@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rest;
 
-import entities.cars.Car;
-import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import entities.jokes.Joke;
+import entities.members.GroupMember;
+import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import java.net.URI;
 import javax.persistence.EntityManager;
@@ -17,24 +15,17 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
 
-/**
- *
- * @author Tweny
- */
-class CarResourceTest {
-    
+class JokeResourceTest {
+
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
-    private static Car car1, car2;
+    private static Joke j1, j2;
 
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -67,17 +58,16 @@ class CarResourceTest {
         httpServer.shutdownNow();
     }
 
-
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        car1 = new Car("Brand 1", "Model 1", 1999, 30000);
-        car2 = new Car("Brand 2", "Model 2", 2021, 100000);
+        j1 = new Joke();
+        j2 = new Joke();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Car.deleteAllRows").executeUpdate();
-            em.persist(car1);
-            em.persist(car2);
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(j1);
+            em.persist(j2);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -85,33 +75,12 @@ class CarResourceTest {
     }
 
     @Test
-    void testServerIsUp() {
-        System.out.println("Testing is server UP");
-        given().when().get("/cars/all").then().statusCode(200);
-    }
-
-    @Test
-    void testYearData() {
-        //Print log
-        given().log().all().when().get("/cars/{id}", car1.getId()).then().log().body();
-        
-        //Do test
+    void testCount() throws Exception {
         given()
-                .when()
-                .get("/cars/{id}", car1.getId())
-                .then()
+                .contentType("application/json")
+                .get("/jokes/all").then()
                 .assertThat()
-                .body("brand", equalToIgnoringCase("Brand 1"));
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("size()", equalTo(2));
     }
-    
-    @Test
-    void testSizeOfJSONCollection() {
-        given()
-                .when()
-                .get("/cars/all")
-                .then()
-                .assertThat()
-                .body("$", hasSize(2));
-    }
-    
 }

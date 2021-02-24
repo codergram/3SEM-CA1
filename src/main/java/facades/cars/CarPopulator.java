@@ -7,7 +7,6 @@ package facades.cars;
 
 import dtos.cars.CarDTO;
 import entities.cars.Car;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
@@ -18,15 +17,7 @@ import utils.EMF_Creator;
 public class CarPopulator {
     public static boolean populate(){
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
-        CarFacade fe = CarFacade.getCarFacade(emf);      
-//        EntityManager em = emf.createEntityManager();
-//        try {
-//            em.getTransaction().begin();
-//            em.persist(new Car("Ford", "E350", 1997, 3000));
-//            em.getTransaction().commit();
-//        } finally {
-//            em.close();
-//        }
+        CarFacade fe = CarFacade.getCarFacade(emf);
         try{
         fe.create(new CarDTO(new Car("Ford", "E350", 1997, 3000)));
         fe.create(new CarDTO(new Car("Chevy", "Venture", 1999, 4900)));

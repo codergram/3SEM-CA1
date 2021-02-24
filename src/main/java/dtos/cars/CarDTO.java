@@ -85,8 +85,7 @@ public class CarDTO {
     }
     
     public static List<CarDTO> convertMovieListToDTO(List<Car> cars){
-        List<CarDTO> carDTOs = cars.stream().map(currentCar -> new CarDTO(currentCar)).collect(Collectors.toList());
-        return carDTOs;
+        return cars.stream().map(currentCar -> new CarDTO(currentCar)).collect(Collectors.toList());
     }
     
     

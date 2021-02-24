@@ -5,7 +5,6 @@
  */
 package facades;
 
-import entities.RenameMe;
 import entities.cars.Car;
 import facades.cars.CarFacade;
 import javax.persistence.EntityManager;
@@ -24,7 +23,7 @@ import utils.EMF_Creator;
  */
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class CarFacadeTest {
+class CarFacadeTest {
 
     private static EntityManagerFactory EMF;
     private static CarFacade FACADE;
@@ -69,12 +68,12 @@ public class CarFacadeTest {
 
     // TODO: Delete or change this method 
     @Test
-    public void testDBSize() {
+    void testDBSize() {
         assertEquals(2, FACADE.getAllCarDTOs().size(), "Expects two rows in the database");
     }
     
     @Test
-    public void testObjectById(){
+    void testObjectById(){
         assertEquals("Brand 1", FACADE.getCarById(car1.getId()).getBrand(), "Expected brand: 'Brand 1'");
     }
 

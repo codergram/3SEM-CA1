@@ -21,16 +21,8 @@ public class GroupMemberResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
        
-    private static final GroupMemberFacade FACADE =  GroupMemberFacade.getFacadeExample(EMF);
+    private static final GroupMemberFacade FACADE =  GroupMemberFacade.getFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-    // FIXME: Should be removed soon
-    @Path("isalive")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String demo() {
-        return "{\"msg\":\"I am alive\"}";
-    }
 
     @Path("all")
     @GET
@@ -72,14 +64,28 @@ public class GroupMemberResource {
         return String.format("{\"msg\":\"%s\"}", msg);
     }
 
-    // TODO: Write content @Emil
     private String emilWork(){
-        return createMsg("DevOps");
+        String str = "<ul>\n"
+            + "      <li>Droplet setup</li>\n"
+            + "      <li>Github repository</li>\n"
+            + "      <li>Group members (REST, JPA, JS, HTML)</li>\n"
+            + "      <li>Group page (REST, JS, HTML)</li>\n"
+            + "      <li>Jokes page (REST, JPA, JS, HTML)</li>\n"
+            + "  </ul>";
+
+        return createMsg(str);
     }
 
-    // TODO: Write content @Arik
     private String arikWork(){
-        return createMsg("Javascript");
+    String str =
+        "<ul>\n"
+            + "      <li>Car Entity and JPA</li>\n"
+            + "      <li>Car REST/API</li>\n"
+            + "      <li>Car test UNI/REST</li>\n"
+            + "      <li>Car for sale JavaScript html</li>\n"
+            + "  </ul>";
+
+        return createMsg(str);
     }
 
     // TODO: Write content @Jacob

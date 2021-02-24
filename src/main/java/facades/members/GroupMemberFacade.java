@@ -25,7 +25,7 @@ public class GroupMemberFacade {
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static GroupMemberFacade getFacadeExample(EntityManagerFactory _emf) {
+    public static GroupMemberFacade getFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new GroupMemberFacade();
@@ -64,7 +64,7 @@ public class GroupMemberFacade {
     
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
-        GroupMemberFacade fe = getFacadeExample(emf);
+        GroupMemberFacade fe = getFacade(emf);
         fe.getAll().forEach(dto->System.out.println(dto));
     }
 

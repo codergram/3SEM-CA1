@@ -6,10 +6,7 @@
 package facades.cars;
 
 import dtos.cars.CarDTO;
-import dtos.members.GroupMemberDTO;
 import entities.cars.Car;
-import entities.members.GroupMember;
-import facades.members.GroupMemberFacade;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

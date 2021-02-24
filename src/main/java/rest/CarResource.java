@@ -8,9 +8,6 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.cars.CarDTO;
-import dtos.members.GroupMemberDTO;
-import utils.EMF_Creator;
-import facades.FacadeExample;
 import facades.cars.CarFacade;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -19,12 +16,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import utils.EMF_Creator;
 
 /**
  *
  * @author Tweny
  */
-//Todo Remove or change relevant parts before ACTUAL use
 @Path("cars")
 public class CarResource {
 
@@ -32,14 +29,7 @@ public class CarResource {
        
     private static final CarFacade FACADE =  CarFacade.getCarFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-            
-    @Path("isalive")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String demo() {
-        return "{\"msg\":\"I am alive\"}";
-    }
-    
+
     @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -48,10 +38,10 @@ public class CarResource {
         return GSON.toJson(carDTOs);
     }
     
-    @Path("id/{id}")
+    @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getCarById(@PathParam("id") long id) {
+    public String getCarById(@PathParam("id") int id) {
         CarDTO carDTO = FACADE.getCarById(id);
         return GSON.toJson(carDTO);
     }

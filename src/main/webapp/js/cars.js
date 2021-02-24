@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 /* global fetch */
 
 function findCarById() {
@@ -13,7 +6,7 @@ function findCarById() {
     let id = document.getElementById("car_id").value;
     //console.log(id);
 
-    fetch('api/cars/id/' + id)
+    fetch('api/cars/' + id)
             .then(res => res.json())
             .then(data => {
                 //console.log("data", data);
