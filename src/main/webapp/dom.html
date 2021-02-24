@@ -39,12 +39,15 @@
                 Add Girl: <input type="text" name="fname" value="">
                 <input value="Submit" type="submit">
             </form>
-                       
-            <button onclick="removeFirstboy(event)">Remove first boy</button>
-            <button onclick="removeLastboy(event)">Remove last boy</button>
+            <button onclick="removeboybtn(event)">Remove boy</button>
+            <button onclick="removegirlbtn(event)">Remove girl</button>
             
-            <button onclick="removeFirstgirl(event)">Remove first girl</button>
-            <button onclick="removeLastgirl(event)">Remoe last girl</button>
+            <div>
+                <input type="checkbox" id="firstcheck"  >Remove first</input>
+            </div>
+            <div>
+                <input type="checkbox" id="lastcheck">Remove last</input>
+            </div>
  
               <button onclick="allreversed(event)">Reverse All</button>
               <button onclick="allsorted(event)">Sort All</button>
@@ -62,6 +65,10 @@
                       <td id="all-table"></td>
                   </tr>
               </table>
+              
+              </div>
+            <a href="index.html" target="_self">Back to index</a>
+        </div>
               
              
        </div>
@@ -93,38 +100,9 @@
                 customArray = ['<ul><li>', customArray, '</li><ul>'];
                 customArray = customArray.join('');
                 document.getElementById('boys-table').innerHTML = customArray;
+                updateall()
             };
- 
-            var removeFirstboy = function (event) {
-                event.preventDefault();
-                console.log(event);
-                console.log(event.target);
-                let customArray = boys;
-                customArray.shift();
-                if (customArray.length > 0) {
-                    customArray = customArray.join('</li><li>');
-                    customArray = ['<ul><li>', customArray, '</li><ul>'];
-                }
-                customArray = customArray.join('');
-                document.getElementById('boys-table').innerHTML = customArray;
-            };
- 
-            var removeLastboy = function (event) {
-                event.preventDefault();
-                console.log(event);
-                console.log(event.target);
-                let customArray = boys;
-                customArray.pop();
-                if (customArray.length > 0) {
-                    customArray = customArray.join('</li><li>');
-                    customArray = ['<ul><li>', customArray, '</li><ul>'];
-                }
-                customArray = customArray.join('');
-                document.getElementById('boys-table').innerHTML = customArray;
-            };
- 
- 
- 
+            
             console.log("HTML boys array");
             let girls = ["Janne", "hanne", "Sanne"];
             var html = girls.join('</li><li>');
@@ -148,41 +126,55 @@
                 customArray = ['<ul><li>', customArray, '</li><ul>'];
                 customArray = customArray.join('');
                 document.getElementById('girls-table').innerHTML = customArray;
+                updateall();
             };
  
-            var removeFirstgirl = function (event) {
-                event.preventDefault();
-                console.log(event);
-                console.log(event.target);
-                let customArray = girls;
-                customArray.shift();
-                if (customArray.length > 0) {
-                    customArray = customArray.join('</li><li>');
-                    customArray = ['<ul><li>', customArray, '</li><ul>'];
-                }
-                customArray = customArray.join('');
-                document.getElementById('girls-table').innerHTML = customArray;
-            };
- 
-            var removeLastgirl = function (event) {
-                event.preventDefault();
-                console.log(event);
-                console.log(event.target);
-                let customArray = girls;
-                customArray.pop();
-                if (customArray.length > 0) {
-                    customArray = customArray.join('</li><li>');
-                    customArray = ['<ul><li>', customArray, '</li><ul>'];
-                }
-                customArray = customArray.join('');
-                document.getElementById('girls-table').innerHTML = customArray;
-            };
-      
-                    
-             var allsorted = function (event) {
-                 all.sort();
+            
                 
-                 document.getElementById('all-table').innerHTML = all;
+                let removefirst_checkbox = document.getElementById('firstcheck');
+                let removelast_checkbox = document.getElementById('lastcheck');
+                
+                removefirst_checkbox.addEventListener('change', function () {
+                  if (this.checked) removelast_checkbox.checked = false
+                    })
+
+                removelast_checkbox.addEventListener('change', function () {
+                  if (this.checked) removefirst_checkbox.checked = false
+                    })
+                 
+               function removeboybtn (){
+                   if (removelast_checkbox.checked) {
+                       boys.pop();
+                   } else if (removefirst_checkbox.checked) {
+                       boys.shift();
+                   }
+                   document.getElementById('boys-table').innerHTML = boys;
+                   updateboys()
+                   updateall()
+               }
+               
+                function removegirlbtn (){
+                   if (removelast_checkbox.checked) {
+                       girls.pop();
+                   } else if (removefirst_checkbox.checked) {
+                       girls.shift();
+                   }
+                    document.getElementById('girls-table').innerHTML = girls;
+                    updategirls()
+                    updateall()
+               }
+       
+             var allsorted = function (event) {
+                 
+                  let allso = all.sort();
+            var html = allso.join('</li><li>');
+            console.log(html);
+            var htmlArray = ['<ul><li>', html, '</li><ul>'];
+            console.log(htmlArray);
+            htmlArray = htmlArray.join('');
+            console.log(htmlArray);
+                
+                 document.getElementById('all-table').innerHTML = htmlArray;
             };
             
             var allreversed = function (event) {
@@ -197,7 +189,7 @@
  
             document.getElementById('all-table').innerHTML = htmlArray;
                  
-                 document.getElementById('all-table').innerHTML = all;
+                    
             };
             
             
@@ -213,7 +205,33 @@
             document.getElementById('all-table').innerHTML = htmlArray;
             
             
-            
+            function updateall(){
+              all = [...boys, ...girls]
+
+              let html = all.join('</li><li>');
+              let htmlArray = ['<ul><li>', html, '</li><ul>'];
+              htmlArray = htmlArray.join('');
+
+              document.getElementById('all-table').innerHTML = htmlArray;
+            }
+            function updateboys(){
+              boys = boys
+
+              let html = boys.join('</li><li>');
+              let htmlArray = ['<ul><li>', html, '</li><ul>'];
+              htmlArray = htmlArray.join('');
+
+              document.getElementById('boys-table').innerHTML = htmlArray;
+            }
+            function updategirls(){
+              girls = girls
+
+              let html = girls.join('</li><li>');
+              let htmlArray = ['<ul><li>', html, '</li><ul>'];
+              htmlArray = htmlArray.join('');
+
+              document.getElementById('girls-table').innerHTML = htmlArray;
+            }
             
                     </script>
  

@@ -91,12 +91,11 @@ public class GroupMemberResource {
         );
     }
 
-    // TODO: Write content @Jacob
-    // @body Få skrevet ind hvilke ting du har lavet.
-    // Husk at fjerne disse to kommentarer inden du pusher.
+ 
     private String jacobWork(){
         List<String> worklist = new ArrayList<>();
-        worklist.add("xxxxxx");
+        worklist.add("Our funny names page added");
+        worklist.add("Html and Javascript");
 
         return GSON.toJson(
             new WorkMade("Jacob", worklist)
