@@ -44,8 +44,9 @@ function getWork(name){
   .then(function(data) {
     console.log(data)
     let rows = ''
-    {data['workdone'].map(member =>
-        rows += `<li>${member}</li>`
+    {data['workdone'].map(workdone =>
+        //console.log("workdone: " + workdone)
+        rows += `<li>${workdone}</li>`
     )}
     document.getElementById(name).innerHTML = '<ul>' + rows + '</ul>'
   })
@@ -64,10 +65,10 @@ if(document.getElementById("membertable")){
 } else if(document.getElementById("grouppage")) {
   console.log("On group page. adding eventlisterns")
   window.addEventListener('load', function() {
-    getMemberWork("all")
-    getMemberWork("emil")
-    getMemberWork("arik")
-    getMemberWork("jacob")
+    getWork("all")
+    getWork("emil")
+    getWork("arik")
+    getWork("jacob")
 
   })
 } else {
