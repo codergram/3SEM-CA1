@@ -1,3 +1,6 @@
+/**
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
+ */
 package rest;
 
 import entities.members.GroupMember;
@@ -13,7 +16,11 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,8 +67,8 @@ class GroupMemberResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new GroupMember();
-        r2 = new GroupMember();
+        r1 = new GroupMember("Emil Elkjær Nielsen", "cph-en93@cphbusiness.dk", new String[]{"Keeping up with the kardasians", "Matador"});
+        r2 = new GroupMember("Sigurd Arik Gaarde Nielsen", "cph-at89@cphbusiness.dk", new String[]{"Huset på Christianshavn", "SWAT"});
         try {
             em.getTransaction().begin();
             em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
@@ -77,9 +84,40 @@ class GroupMemberResourceTest {
     void testCount() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/groupmembers/all").then()
+                .get("/groupmembers/all")
+                .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("size()", equalTo(2));
+    }
+
+    @Test
+    void testGetById() throws Exception {
+        int expectedId = r1.getId();
+
+        //given().log().all().when().get("/groupmembers/all").then().log().body();
+
+    given()
+        .pathParam("id", expectedId)
+        .contentType("application/json")
+        .get("/groupmembers/{id}")
+        .then()
+        .assertThat()
+        .statusCode(HttpStatus.OK_200.getStatusCode())
+        .body("id", equalTo(expectedId));
+    }
+
+    @Test
+    void testGetByName() throws Exception {
+        String expectedName = r1.getName();
+
+        given()
+            .pathParam("name", "emil") //For at teste vores LIKE funktion
+            .contentType("application/json")
+            .get("/groupmembers/name/{name}")
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK_200.getStatusCode())
+            .body("name", equalToIgnoringCase(expectedName));
     }
 }

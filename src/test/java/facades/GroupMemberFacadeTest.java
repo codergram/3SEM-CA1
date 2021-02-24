@@ -1,5 +1,9 @@
+/**
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
+ */
 package facades;
 
+import dtos.members.GroupMemberDTO;
 import entities.members.GroupMember;
 import facades.members.GroupMemberFacade;
 import utils.EMF_Creator;
@@ -16,6 +20,8 @@ class GroupMemberFacadeTest {
 
     private static EntityManagerFactory emf;
     private static GroupMemberFacade facade;
+
+    GroupMember r1;
 
     public GroupMemberFacadeTest() {
     }
@@ -34,13 +40,15 @@ class GroupMemberFacadeTest {
     public void setUp() {
         EntityManager em = emf.createEntityManager();
         try {
+            r1 = new GroupMember(
+                "Emil",
+                "cph-en93@cphbusiness.dk",
+                new String[]{"Keeping up with the kardasians", "Matador"});
+
             em.getTransaction().begin();
             em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
             em.persist(
-                    new GroupMember(
-                        "Emil",
-                        "cph-en93@cphbusiness.dk",
-                        new String[]{"Keeping up with the kardasians", "Matador"})
+                    r1
                 );
 
             em.persist(
@@ -63,6 +71,27 @@ class GroupMemberFacadeTest {
     @Test
     void countInDatabase() {
         assertEquals(2, facade.getAll().size(), "Expects two rows in the database");
+    }
+
+    @Test
+    void getById(){
+        int expected = 1;
+        assertEquals(expected, facade.getById(expected).getId(), "Expects " + expected + " to be in the database");
+    }
+
+    @Test
+    void getByName(){
+        String expected = r1.getName();
+        assertEquals(expected, facade.getByName("emil").getName(), "Expects " + expected + " to be in the database");
+    }
+
+    @Test
+    void createMember(){
+        facade.create(
+            new GroupMemberDTO(
+                new GroupMember("Testmand", "cph-test12@cphbusiness.dk", new String[]{})
+            ));
+        assertEquals(3, facade.getAll().size(), "Expects three rows in the database");
     }
     
 

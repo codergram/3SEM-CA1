@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 public class JokeDTO {
   private int id;

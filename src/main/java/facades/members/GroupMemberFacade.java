@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import utils.EMF_Creator;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 public class GroupMemberFacade {
 
@@ -50,9 +50,17 @@ public class GroupMemberFacade {
         }
         return new GroupMemberDTO(member);
     }
+
     public GroupMemberDTO getByName(String name){
         EntityManager em = emf.createEntityManager();
-        return new GroupMemberDTO(em.find(GroupMember.class, name));
+        TypedQuery<GroupMember> query = em.createQuery("SELECT Members FROM GroupMember Members WHERE Members.name LIKE CONCAT('%',UPPER(:name),'%')", GroupMember.class).setParameter("name", name);
+        return new GroupMemberDTO(query.getSingleResult());
+    }
+
+    public GroupMemberDTO getById(int id){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<GroupMember> query = em.createQuery("SELECT Members FROM GroupMember Members WHERE Members.id = :id", GroupMember.class).setParameter("id", id);
+        return new GroupMemberDTO(query.getSingleResult());
     }
     
     public List<GroupMemberDTO> getAll(){
@@ -65,7 +73,7 @@ public class GroupMemberFacade {
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
         GroupMemberFacade fe = getFacade(emf);
-        fe.getAll().forEach(dto->System.out.println(dto));
+        fe.getAll().forEach(System.out::println);
     }
 
 }

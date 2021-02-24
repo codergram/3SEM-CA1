@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import utils.EMF_Creator;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 @Path("groupmembers")
 public class GroupMemberResource {
@@ -33,14 +33,21 @@ public class GroupMemberResource {
         return GSON.toJson(members);
     }
 
-    @Path("name/{name}")
+    @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getById(@PathParam("name") String name) {
-        GroupMemberDTO member = FACADE.getByName(name);
+    public String getById(@PathParam("id") int id) {
+        GroupMemberDTO member = FACADE.getById(id);
         return GSON.toJson(member);
     }
 
+    @Path("name/{name}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getByName(@PathParam("name") String name) {
+        GroupMemberDTO member = FACADE.getByName(name);
+        return GSON.toJson(member);
+    }
 
 
     @Path("madeby/{name}")

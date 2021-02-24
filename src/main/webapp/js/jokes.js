@@ -1,4 +1,6 @@
-/* Emil */
+/**
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
+ */
 
 const URL = 'https://codergram.me/ca1/api/';
 

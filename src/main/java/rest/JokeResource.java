@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import utils.EMF_Creator;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 @Path("jokes")
 public class JokeResource {

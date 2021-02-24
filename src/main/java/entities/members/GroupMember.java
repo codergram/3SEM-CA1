@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 @Entity
 @NamedQuery(name = "GroupMember.deleteAllRows", query = "DELETE from GroupMember")

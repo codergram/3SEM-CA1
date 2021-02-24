@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package facades.jokes;
 
 import dtos.jokes.JokeDTO;
@@ -10,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 public class JokePopulator {
   public static boolean populate(){

@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import utils.EMF_Creator;
 
 /**
- * @author Emil
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
  */
 public class JokeFacade {
 

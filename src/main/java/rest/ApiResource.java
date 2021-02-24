@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * @author Emil
- * @author Arik
+ * @author Emil Elkjær Nielsen (cph-en93@cphbusiness.dk)
+ * @author Sigurd Arik Gaarde Nielsen (cph-at89@cphbusiness.dk)
  */
 @Path("")
 public class ApiResource {
