@@ -14,22 +14,36 @@
     
     </head>
     <body>
+        
+        <div id="app" class="container">
+    <div id="header">
+      <div class="row">
+        <div class="col-3">
+          <a href="index.html" class="text-center">Back to index</a>
+        </div>
+        <div class="col-6">
+          <img src="img/logo.png" class="img-fluid mx-auto d-block" alt="Codergram" width="30%">
+        </div>
+        <div class="col-3">
+
+        </div>
+      </div>
+    </div>
   
-        <div style="text-align: center" class="col-sm-8">
+        <div  class="container">
            
             <div class="container">
             <div class="row">
-                <div class="col-sm-2">
+                <div class="container">
  
                 </div>
-                <div class="col-sm-8">
+                <div class="container">
                     <br>
-                    <h1 style="text-align: center">Dom Manipulation Page - Codergram</h1>
+                    <h1 style="text-align: center">Dom Manipulation Page</h1>
                     <br>
-                    <p style="text-align: center">Add girls and boys to the list's</p>
-                    <br><br>
+                    
  
-                   <div>
+                   <div style="text-align: center">
             <form onsubmit="mySubmitFunctionboy(event)" id="myForm" action="#">
                 Add Boy: <input type="text" name="fname" value="">
                 <input value="Submit" type="submit">
@@ -42,16 +56,16 @@
             <button onclick="removeboybtn(event)">Remove boy</button>
             <button onclick="removegirlbtn(event)">Remove girl</button>
             
-            <div>
+            <div style="text-align: center">
                 <input type="checkbox" id="firstcheck"  >Remove first</input>
             </div>
-            <div>
+            <div style="text-align: center">
                 <input type="checkbox" id="lastcheck">Remove last</input>
             </div>
  
               <button onclick="allreversed(event)">Reverse All</button>
               <button onclick="allsorted(event)">Sort All</button>
-              <div style="text-align:center">
+              <div style="text-align: center">
               <br>
               <table class="table table-hover">
                   <tr>
@@ -67,7 +81,6 @@
               </table>
               
               </div>
-            <a href="index.html" target="_self">Back to index</a>
         </div>
               
              
