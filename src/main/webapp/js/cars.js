@@ -16,7 +16,7 @@ function findCarById() {
 
                 //Clear fields
                 clearData();
-                
+
             }).catch(function (error) {
         console.log(error);
         document.getElementById("message").innerHTML = `<p style="color: #ff0000;">Error: ${error}</p>`;
@@ -24,7 +24,7 @@ function findCarById() {
 }
 ;
 
-document.getElementById("findCarPrice").onclick = () => {
+document.getElementById("findCarPrice").addEventListener("click", function () {
     let price = document.getElementById("car_price").value;
     //console.log(price);
     fetch('api/cars/all')
@@ -43,12 +43,39 @@ document.getElementById("findCarPrice").onclick = () => {
 
                 //Clear fields
                 clearData();
-                
+
             }).catch(function (error) {
         console.log(error);
         document.getElementById("message").innerHTML = `<p style="color: #ff0000;">Error: ${error}</p>`;
     });
-};
+});
+
+
+//document.getElementById("findCarPrice").onclick = () => {
+//    let price = document.getElementById("car_price").value;
+//    //console.log(price);
+//    fetch('api/cars/all')
+//            .then(res => res.json())
+//            .then(data => {
+//                let filteredData = data.filter(currentElement => currentElement.price < price);
+//                //console.log("data", data);
+//                const htmlTagArray = filteredData.map(currentElement => {
+//                    //console.log(currentElement);
+//                    const row = `<tr><td>${currentElement.id}</td><td>${currentElement.brand}</td><td>${currentElement.model}</td><td>${currentElement.year}</td><td>${currentElement.price}</td></tr>`;
+//                    return row;
+//                });
+//                htmlTag = htmlTagArray.join("");
+//                //console.log(htmlTag);
+//                document.getElementById('tableContent').innerHTML = htmlTag;
+//
+//                //Clear fields
+//                clearData();
+//
+//            }).catch(function (error) {
+//        console.log(error);
+//        document.getElementById("message").innerHTML = `<p style="color: #ff0000;">Error: ${error}</p>`;
+//    });
+//};
 
 
 document.getElementById("findCarBrand").onclick = () => {
@@ -69,7 +96,7 @@ document.getElementById("findCarBrand").onclick = () => {
 
                 //Clear fields
                 clearData();
-                
+
             }).catch(function (error) {
         console.log(error);
         document.getElementById("message").innerHTML = `<p style="color: #ff0000;">Error: ${error}</p>`;
